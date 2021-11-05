@@ -83,6 +83,7 @@ def WhatsMySecretSecured(name,pin,df):
     user_found = df.loc[df["name"] == name]
     user_pin = user_found["pins"].values[0]
     user_secret = user_found["secret"].values[0]
+    print(user_pin)
     if not user_found.empty and user_secret != -1 and user_pin == pin:
         secret_name = df.loc[df["id"]==user_secret]
         secret = secret_name["name"].values[0]
