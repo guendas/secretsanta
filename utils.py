@@ -96,6 +96,7 @@ def WhatsMySecretSecured(name,pin,df):
     else:
         st.write("User not found! Did you write your name correctly?")
         secret = ""
+    st.write(pin)
     return secret
 
 def GenerateSecretSantaFile(df,file_path,connection_string,container_name):
