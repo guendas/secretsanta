@@ -35,6 +35,16 @@ def DownloadBlob(connectionString,containerName,blobName,file_path):
     print("File downloaded!")
     return file_path
 
+def DownloadBlobToStreamlit(connectionString,containerName,blobName,file_path):
+    service = BlobServiceClient.from_connection_string(conn_str=connectionString, container_name=containerName,blob_name=blobName)
+    blob_client = service.get_blob_client(container=containerName,blob=blobName)
+    file_path = os.path.join("data",file_path)
+    with open(file_path, "wb") as my_blob:
+        blob_data = blob_client.download_blob()
+        blob_data.readinto(my_blob)
+    print("File downloaded!")
+    return file_path
+
 #TODO: updates just single value
 def UpdateCSVValue(filename,secret_id):
     df = pd.read_csv(filename)
@@ -73,6 +83,6 @@ def GenerateSecretSantaFile(df,file_path,connection_string,container_name):
     UploadFileToBlob(file_path,connection_string,container_name,file_path)
 
 def ShowSecretSanta(file_path,connection_string,container_name,blob_name,username):
-    file_path = DownloadBlob(connection_string,container_name,blob_name,file_path)
+    file_path = DownloadBlobToStreamlit(connection_string,container_name,blob_name,file_path)
     df = pd.concat(file_path)
     secret = WhatsMySecret(username,df)
