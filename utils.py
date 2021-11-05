@@ -69,7 +69,8 @@ def WhatsMySecret(name,df):
     user_found = df.loc[df["name"] == name]
     user_secret = user_found["secret"].values[0]
     if not user_found.empty and user_secret != -1:
-        secret = user_secret
+        secret_name = df.loc[df["id"]==user_secret]
+        secret = secret_name["name"].values[0]
     elif user_found["secret"] == -1:
         st.write("Secret not associated! Contatct admin")
     else:
