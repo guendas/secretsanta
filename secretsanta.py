@@ -2,10 +2,10 @@ import streamlit as st
 import utils
 from PIL import Image
 
-file = st.secrets("file")
-cs = st.secrets("connectionString")
-container = st.secrets("container_name")
-blob = st.secrets("blob_name")
+file = st.secrets["file"]
+cs = st.secrets["connectionString"]
+container = st.secrets["container_name"]
+blob = st.secrets["blob_name"]
 
 image = Image.open('secretsanta.png')
 
