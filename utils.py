@@ -83,6 +83,6 @@ def GenerateSecretSantaFile(df,file_path,connection_string,container_name):
     UploadFileToBlob(file_path,connection_string,container_name,file_path)
 
 def ShowSecretSanta(file_path,connection_string,container_name,blob_name,username):
-    file_path = DownloadBlobToStreamlit(connection_string,container_name,blob_name,file_path)
-    df = pd.concat(file_path)
+    file_path = DownloadBlob(connection_string,container_name,blob_name,file_path)
+    df = pd.read_csv(file_path)
     secret = WhatsMySecret(username,df)
