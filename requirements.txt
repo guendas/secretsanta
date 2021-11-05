@@ -1,4 +1,3 @@
-name: secretsanta
 channels:
   - defaults
 dependencies:
