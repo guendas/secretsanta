@@ -13,8 +13,12 @@ st.image(image,caption='Secret Santa logo')
 st.title('Chi sara il tuo Secret Santa quest\'anno?')
 st.subheader('Scoprilo inserendo il tuo nome e schiacciando sul bottone!')
 
-input_text = st.text_input('Chi sei?','')
+input_text = st.text_input('Inserisci qui il tuo nome','')
+pin = st.text_input('Inserisci il tuo pin','')
 
 if st.button('Scopri il tuo Secret Santa') and input_text != '':
-    secret = utils.ShowSecretSanta(file,cs,container,blob,input_text)
-    st.write('Ciao',input_text, ', il tuo Secret Santa è __', secret,'__')
+    secret = utils.ShowSecretSantaSecured(file,cs,container,blob,input_text,pin)
+    if secret != "":
+        st.write('Ciao',input_text, ', il tuo Secret Santa è __', secret,'__')
+    else:
+        st.write('I dati che hai inserito non sono corretti. Riprova!')

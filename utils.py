@@ -73,8 +73,25 @@ def WhatsMySecret(name,df):
         secret = secret_name["name"].values[0]
     elif user_found["secret"] == -1:
         st.write("Secret not associated! Contatct admin")
+        secret = ""
     else:
         st.write("User not found! Did you write your name correctly?")
+        secret = ""
+    return secret
+
+def WhatsMySecretSecured(name,pin,df):
+    user_found = df.loc[df["name"] == name]
+    user_pin = user_found["pins"].values[0]
+    user_secret = user_found["secret"].values[0]
+    if not user_found.empty and user_secret != -1 and user_pin == pin:
+        secret_name = df.loc[df["id"]==user_secret]
+        secret = secret_name["name"].values[0]
+    elif user_found["secret"] == -1:
+        st.write("Secret not associated! Contatct admin")
+        secret = ""
+    else:
+        st.write("User not found! Did you write your name correctly?")
+        secret = ""
     return secret
 
 def GenerateSecretSantaFile(df,file_path,connection_string,container_name):
@@ -87,4 +104,10 @@ def ShowSecretSanta(file_path,connection_string,container_name,blob_name,usernam
     file_path = DownloadBlob(connection_string,container_name,blob_name,file_path)
     df = pd.read_csv(file_path)
     secret = WhatsMySecret(username,df)
+    return secret
+
+def ShowSecretSantaSecured(file_path,connection_string,container_name,blob_name,username,pin):
+    file_path = DownloadBlob(connection_string,container_name,blob_name,file_path)
+    df = pd.read_csv(file_path)
+    secret = WhatsMySecretSecured(username,pin,df)
     return secret
