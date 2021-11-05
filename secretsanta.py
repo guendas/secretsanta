@@ -1,4 +1,5 @@
 import streamlit as st
+from azure.storage.blob import BlobServiceClient
 import utils
 from PIL import Image
 
