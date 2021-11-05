@@ -86,3 +86,4 @@ def ShowSecretSanta(file_path,connection_string,container_name,blob_name,usernam
     file_path = DownloadBlob(connection_string,container_name,blob_name,file_path)
     df = pd.read_csv(file_path)
     secret = WhatsMySecret(username,df)
+    return secret
