@@ -17,4 +17,4 @@ input_text = st.text_input('Chi sei?','')
 
 if st.button('Scopri il tuo Secret Santa') and input_text != '':
     secret = utils.ShowSecretSanta(file,cs,container,blob,input_text)
-    st.write('Ciao',input_text, ', il tuo Secret Santa è ', secret)
+    st.write('Ciao',input_text, ', il tuo Secret Santa è __', secret),'__'
