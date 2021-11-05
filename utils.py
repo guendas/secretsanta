@@ -38,7 +38,7 @@ def DownloadBlob(connectionString,containerName,blobName,file_path):
 def DownloadBlobToStreamlit(connectionString,containerName,blobName,file_path):
     service = BlobServiceClient.from_connection_string(conn_str=connectionString, container_name=containerName,blob_name=blobName)
     blob_client = service.get_blob_client(container=containerName,blob=blobName)
-    file_path = os.path.join("data",file_path)
+    file_path = os.path.join(file_path)
     with open(file_path, "wb") as my_blob:
         blob_data = blob_client.download_blob()
         blob_data.readinto(my_blob)
