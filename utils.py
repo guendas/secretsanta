@@ -84,12 +84,15 @@ def WhatsMySecretSecured(name,pin,df):
     user_pin = user_found["pins"].values[0]
     user_secret = user_found["secret"].values[0]
     st.write(user_pin)
-    if not user_found.empty and user_secret != -1 and user_pin == pin:
-        secret_name = df.loc[df["id"]==user_secret]
-        secret = secret_name["name"].values[0]
-    elif user_secret == -1:
-        st.write("Secret not associated! Contatct admin")
-        secret = ""
+    if not user_found.empty:
+        if user_secret != -1 and user_pin == pin:
+            secret_name = df.loc[df["id"]==user_secret]
+            secret = secret_name["name"].values[0]
+        elif user_secret == -1:
+            st.write("Secret not associated! Contatct admin")
+            secret = ""
+        elif user_pin != pin:
+            st.write("Pin errato! Riprova")
     else:
         st.write("User not found! Did you write your name correctly?")
         secret = ""
