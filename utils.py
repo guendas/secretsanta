@@ -93,10 +93,10 @@ def WhatsMySecretSecured(name,pin,df):
             secret = ""
         elif user_pin != pin:
             st.write("Pin errato! Riprova")
+            secret = ""
     else:
         st.write("User not found! Did you write your name correctly?")
         secret = ""
-    st.write(pin)
     return secret
 
 def GenerateSecretSantaFile(df,file_path,connection_string,container_name):
